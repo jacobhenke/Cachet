@@ -174,7 +174,7 @@ class DashboardRoutes
                         'as'   => 'invite',
                         'uses' => 'TeamController@showInviteTeamMemberView',
                     ]);
-                    $router->get('{user}', 'TeamController@showTeamMemberView');
+                    $router->get('{user}', ['as' => 'edit', 'uses' => 'TeamController@showTeamMemberView']);
                     $router->post('add', 'TeamController@postAddUser');
                     $router->post('invite', 'TeamController@postInviteUser');
                     $router->post('{user}', 'TeamController@postUpdateUser');
@@ -206,6 +206,10 @@ class DashboardRoutes
                 $router->get('stylesheet', [
                     'as'   => 'stylesheet',
                     'uses' => 'SettingsController@showStylesheetView',
+                ]);
+                $router->get('customization', [
+                    'as'   => 'customization',
+                    'uses' => 'SettingsController@showCustomizationView',
                 ]);
                 $router->post('/', 'SettingsController@postSettings');
             });
